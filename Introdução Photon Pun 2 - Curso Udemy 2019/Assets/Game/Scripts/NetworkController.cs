@@ -67,7 +67,7 @@ namespace IntroducaoPhotonUdemy {
         public void ButtonCriarSala() {
 
             string tempRoomName = roomName.text;
-            RoomOptions myRoomOptions = new RoomOptions() {MaxPlayers = 1}; //Opções que a sala terá
+            RoomOptions myRoomOptions = new RoomOptions() {MaxPlayers = 20}; //Opções que a sala terá
             PhotonNetwork.JoinOrCreateRoom(tempRoomName, myRoomOptions, TypedLobby.Default); //Entra na sala com o nome informado, se não houver, cria uma
         }
 

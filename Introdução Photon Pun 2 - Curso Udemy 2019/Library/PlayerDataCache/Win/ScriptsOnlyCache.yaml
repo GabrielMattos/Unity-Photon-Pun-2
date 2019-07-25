@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - IntroducaoPhotonUdemy.BulletController
     - IntroducaoPhotonUdemy.NetworkController
     - IntroducaoPhotonUdemy.PlayerController
     - Photon.Pun.Demo.Asteroids.Asteroid
@@ -12,6 +13,11 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
+    PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PhotonRigidbody2DViewEditor
+    - Photon.Pun.PhotonTransformViewEditor
+    - Photon.Pun.PhotonViewInspector
+    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonRigidbody2DView
@@ -90,49 +96,51 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11198}
     - Class: 114
-      Script: {instanceID: 11568}
+      Script: {instanceID: 11402}
     - Class: 114
-      Script: {instanceID: 11590}
+      Script: {instanceID: 11570}
     - Class: 114
-      Script: {instanceID: 11674}
+      Script: {instanceID: 11592}
     - Class: 114
-      Script: {instanceID: 11740}
+      Script: {instanceID: 11676}
     - Class: 114
-      Script: {instanceID: 11936}
+      Script: {instanceID: 11742}
     - Class: 114
-      Script: {instanceID: 12006}
+      Script: {instanceID: 11938}
     - Class: 114
-      Script: {instanceID: 12130}
+      Script: {instanceID: 12008}
     - Class: 114
-      Script: {instanceID: 12182}
+      Script: {instanceID: 12132}
     - Class: 114
-      Script: {instanceID: 12262}
+      Script: {instanceID: 12184}
     - Class: 114
-      Script: {instanceID: 12346}
+      Script: {instanceID: 12264}
     - Class: 114
-      Script: {instanceID: 12354}
+      Script: {instanceID: 12348}
     - Class: 114
-      Script: {instanceID: 12366}
+      Script: {instanceID: 12356}
     - Class: 114
-      Script: {instanceID: 12558}
+      Script: {instanceID: 12368}
     - Class: 114
-      Script: {instanceID: 12566}
+      Script: {instanceID: 12560}
     - Class: 114
-      Script: {instanceID: 12572}
+      Script: {instanceID: 12568}
     - Class: 114
-      Script: {instanceID: 12708}
+      Script: {instanceID: 12574}
     - Class: 114
-      Script: {instanceID: 12982}
+      Script: {instanceID: 12710}
     - Class: 114
-      Script: {instanceID: 13074}
+      Script: {instanceID: 12984}
     - Class: 114
-      Script: {instanceID: 13154}
+      Script: {instanceID: 13076}
     - Class: 114
-      Script: {instanceID: 13170}
+      Script: {instanceID: 13156}
     - Class: 114
-      Script: {instanceID: 13192}
+      Script: {instanceID: 13172}
     - Class: 114
-      Script: {instanceID: 13200}
+      Script: {instanceID: 13194}
+    - Class: 114
+      Script: {instanceID: 13202}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -464,6 +472,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.dll
     namespaceName: Photon.Pun
     className: PhotonHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 760f4ac1403e73ba64ccd7f900b6d8be
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: IntroducaoPhotonUdemy
+    className: BulletController
   - hash:
       serializedVersion: 2
       Hash: bd3cf68c8964d3c66d1c43f4f98508c9
@@ -1222,7 +1236,7 @@ ScriptsOnlyBuild:
     className: OnlineDocButton
   - hash:
       serializedVersion: 2
-      Hash: 77b5b392291ad3027e7177d702923e9e
+      Hash: c2ac43f1e59e4cdce49ef09e86780235
     assemblyName: Assembly-CSharp.dll
     namespaceName: IntroducaoPhotonUdemy
     className: PlayerController
