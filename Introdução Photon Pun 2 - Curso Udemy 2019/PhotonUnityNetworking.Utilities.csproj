@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{D540182D-0836-6EEF-16E6-DBCF595B1892}</ProjectGuid>
+    <ProjectGuid>{9CFF8AD6-870B-4263-11E4-8966154158FA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>PhotonUnityNetworking.Utilities</AssemblyName>
@@ -81,10 +81,10 @@
      <Compile Include="Assets\Photon\PhotonUnityNetworking\UtilityScripts\UI\TextButtonTransition.cs" />
      <Compile Include="Assets\Photon\PhotonUnityNetworking\UtilityScripts\UI\TextToggleIsOnTransition.cs" />
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/Gabriel/Documents/UNITY/Introdução Photon Pun 2 - Curso Udemy 2019/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Users/Gabriel/Documents/GitHub/Unity-Photon-Pun-2-/New UniIntrodução Photon Pun 2 - Curso Udemy 2019ty Project/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/Gabriel/Documents/UNITY/Introdução Photon Pun 2 - Curso Udemy 2019/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/Gabriel/Documents/GitHub/Unity-Photon-Pun-2-/New UniIntrodução Photon Pun 2 - Curso Udemy 2019ty Project/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/2019.3.0a6/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -273,10 +273,10 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/2019.3.0a6/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="Photon3Unity3D">
- <HintPath>C:/Users/Gabriel/Documents/UNITY/Introdução Photon Pun 2 - Curso Udemy 2019/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
+ <HintPath>C:/Users/Gabriel/Documents/GitHub/Unity-Photon-Pun-2-/New UniIntrodução Photon Pun 2 - Curso Udemy 2019ty Project/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
  </Reference>
  <Reference Include="websocket-sharp">
- <HintPath>C:/Users/Gabriel/Documents/UNITY/Introdução Photon Pun 2 - Curso Udemy 2019/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
+ <HintPath>C:/Users/Gabriel/Documents/GitHub/Unity-Photon-Pun-2-/New UniIntrodução Photon Pun 2 - Curso Udemy 2019ty Project/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/2019.3.0a6/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -626,11 +626,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="PhotonRealtime.csproj">
-      <Project>{54371066-D49B-767F-3EB4-75A747D222CA}</Project>
+      <Project>{605BA751-C664-0675-DCB3-102B470C462E}</Project>
       <Name>PhotonRealtime</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.csproj">
-      <Project>{EB572B34-3943-E08D-7CA9-249E9DAE700C}</Project>
+      <Project>{3958E8EE-F687-053C-0751-522B6BB65A05}</Project>
       <Name>PhotonUnityNetworking</Name>
     </ProjectReference>
   </ItemGroup>

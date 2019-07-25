@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{87D13B80-C615-1D71-7530-DF11E80E245F}</ProjectGuid>
+    <ProjectGuid>{C3D95012-7539-49E9-9DE6-D90932BE0700}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>PhotonUnityNetworking.Utilities.Culling.Editor</AssemblyName>
@@ -55,16 +55,16 @@
   <ItemGroup>
      <Compile Include="Assets\Photon\PhotonUnityNetworking\UtilityScripts\Culling\Editor\CullAreaEditor.cs" />
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/Gabriel/Documents/UNITY/Introdução Photon Pun 2 - Curso Udemy 2019/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Users/Gabriel/Documents/GitHub/Unity-Photon-Pun-2-/New UniIntrodução Photon Pun 2 - Curso Udemy 2019ty Project/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/Gabriel/Documents/UNITY/Introdução Photon Pun 2 - Curso Udemy 2019/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/Gabriel/Documents/GitHub/Unity-Photon-Pun-2-/New UniIntrodução Photon Pun 2 - Curso Udemy 2019ty Project/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.TestRunner">
- <HintPath>C:/Users/Gabriel/Documents/UNITY/Introdução Photon Pun 2 - Curso Udemy 2019/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+ <HintPath>C:/Users/Gabriel/Documents/GitHub/Unity-Photon-Pun-2-/New UniIntrodução Photon Pun 2 - Curso Udemy 2019ty Project/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.TestRunner">
- <HintPath>C:/Users/Gabriel/Documents/UNITY/Introdução Photon Pun 2 - Curso Udemy 2019/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+ <HintPath>C:/Users/Gabriel/Documents/GitHub/Unity-Photon-Pun-2-/New UniIntrodução Photon Pun 2 - Curso Udemy 2019ty Project/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/2019.3.0a6/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -253,13 +253,13 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/2019.3.0a6/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="Photon3Unity3D">
- <HintPath>C:/Users/Gabriel/Documents/UNITY/Introdução Photon Pun 2 - Curso Udemy 2019/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
+ <HintPath>C:/Users/Gabriel/Documents/GitHub/Unity-Photon-Pun-2-/New UniIntrodução Photon Pun 2 - Curso Udemy 2019ty Project/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
  </Reference>
  <Reference Include="websocket-sharp">
- <HintPath>C:/Users/Gabriel/Documents/UNITY/Introdução Photon Pun 2 - Curso Udemy 2019/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
+ <HintPath>C:/Users/Gabriel/Documents/GitHub/Unity-Photon-Pun-2-/New UniIntrodução Photon Pun 2 - Curso Udemy 2019ty Project/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
- <HintPath>C:/Users/Gabriel/Documents/UNITY/Introdução Photon Pun 2 - Curso Udemy 2019/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+ <HintPath>C:/Users/Gabriel/Documents/GitHub/Unity-Photon-Pun-2-/New UniIntrodução Photon Pun 2 - Curso Udemy 2019ty Project/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/2019.3.0a6/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -618,7 +618,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.csproj">
-      <Project>{D540182D-0836-6EEF-16E6-DBCF595B1892}</Project>
+      <Project>{9CFF8AD6-870B-4263-11E4-8966154158FA}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
