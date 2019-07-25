@@ -73,7 +73,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 690
+  controlID: 157
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 62
+  controlID: 180
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_MinSize: {x: 231, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 105
+  controlID: 58
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_MinSize: {x: 276, y: 192}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 63
+  controlID: 181
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -458,9 +458,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 90eeffff
-      m_LastClickedID: -4464
-      m_ExpandedIDs: 42efffff66efffff68efffffb2efffffd8efffff90f1ffff5cf5ffff7cf5ffff42f7ffff7efbffff
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 80caffffa4caffffa6caffffaacafffff6caffff1acbffffc0ccffffc4ccffff5cd0ffff80d0ffff82d0ffff86d0fffffcd1ffff20d2ffffc8d3ffffccd3ffff62f8ffff00faffff20faffff36faffff66fbffff56390000965d0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -523,11 +523,11 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Game/Prefabs/Resources
+    - Assets/Game/Prefabs
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Game/Prefabs/Resources
+  - Assets/Game/Prefabs
   m_LastFoldersGridSize: 16
   m_LastProjectPath: "C:\\Users\\Gabriel\\Documents\\GitHub\\Unity-Photon-Pun-2-\\Introdu\xE7\xE3o
     Photon Pun 2 - Curso Udemy 2019"
@@ -535,9 +535,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d6360000
-    m_LastClickedID: 14038
-    m_ExpandedIDs: 00000000ba360000bc360000be360000d436000000ca9a3b
+    m_SelectedIDs: e2360000
+    m_LastClickedID: 14050
+    m_ExpandedIDs: 00000000da360000dc360000de360000e636000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -565,7 +565,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ba360000bc360000be360000
+    m_ExpandedIDs: 00000000da360000dc360000de360000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -683,9 +683,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.29020998, y: 0.08150932, z: -0.19155589}
+    m_Target: {x: 640, y: 445, z: 0}
     speed: 2
-    m_Value: {x: 0.29020998, y: 0.08150932, z: -0.19155589}
+    m_Value: {x: 640, y: 445, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -719,9 +719,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1.7111454
+    m_Target: 415.45938
     speed: 2
-    m_Value: 1.7111454
+    m_Value: 415.45938
   m_Ortho:
     m_Target: 1
     speed: 2

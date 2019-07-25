@@ -33,12 +33,21 @@ namespace IntroducaoPhotonUdemy  {
                 bulletTimeCount += Time.deltaTime;
             }
 
+            [PunRPC]
+            void BulletDestroy() {
+
+                Destroy(this.gameObject);
+            }
+
             private void OnTriggerEnter2D(Collider2D target) {
 
                 if(target.CompareTag("Player") && target.GetComponent<PlayerController>() && target.GetComponent<PhotonView>().IsMine) {
                     print("PlayerID: " + target.GetComponent<PhotonView>().Owner.ActorNumber + " PlayerName: " + target.GetComponent<PhotonView>().Owner.NickName);
                     target.GetComponent<PlayerController>().TakeDamage(-bulletDamage);
+                    this.GetComponent<PhotonView>().RPC("BulletDestroy", RpcTarget.AllViaServer);
                 }
+
+                Destroy(this.gameObject);
             }
         }   
 }

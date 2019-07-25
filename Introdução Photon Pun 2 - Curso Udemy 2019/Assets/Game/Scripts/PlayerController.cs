@@ -40,8 +40,6 @@ namespace IntroducaoPhotonUdemy  {
                 Shooting();
             }
 
-            
-
             //if(Input.GetMouseButtonDown(0)) {
               //  HealthManager(-10f);
             //}
@@ -52,7 +50,8 @@ namespace IntroducaoPhotonUdemy  {
             if(Input.GetMouseButtonDown(0)) {
                 
                 //Chama a função para ser vista na rede
-                photonView.RPC("Shoot", RpcTarget.All);
+                //photonView.RPC("Shoot", RpcTarget.All);
+                PhotonNetwork.Instantiate(bulletPrefab.name, spawnBullet.transform.position, spawnBullet.transform.rotation, 0);
             }
 
             /*if(Input.GetMouseButtonDown(1)) {
@@ -63,7 +62,7 @@ namespace IntroducaoPhotonUdemy  {
 
         [PunRPC] //Isso quer dizer que a função é pra ser vista na rede
         void Shoot() {
-            
+
             Instantiate(bulletPrefab, spawnBullet.transform.position, spawnBullet.transform.rotation);
         }
 

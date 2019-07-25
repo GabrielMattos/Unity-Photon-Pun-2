@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
+using Photon.Pun.UtilityScripts;
+using Hastable = ExitGames.Client.Photon.Hashtable;
+
 namespace IntroducaoPhotonUdemy {
 
 /* SCRIPT PARA CONEXÃO INICIAL DO PHOTON*/
@@ -20,6 +23,11 @@ namespace IntroducaoPhotonUdemy {
         public InputField inputPlayername, roomName;
         private string playerNameTemp;
         public GameObject myPlayer;
+
+        Hastable gamemode = new Hastable();
+        public byte gameMaxPlayer = 4;
+        string gameModeKey = "gamemode";
+
  
 #endregion 
 #region UNITY
@@ -60,6 +68,13 @@ namespace IntroducaoPhotonUdemy {
         }
 
         public void ButtonBuscarPartidaRapida() {
+            
+            string[] typeGameRandom = new string[] {
+                "PvP",
+                "PvAI"
+            };
+
+            gamemode.Add(gameModeKey, typeGameRandom[Random.Range(0, typeGameRandom.Length)]);
 
             PhotonNetwork.JoinLobby(); //Entrar em um Lobby
         }
@@ -67,8 +82,20 @@ namespace IntroducaoPhotonUdemy {
         public void ButtonCriarSala() {
 
             string tempRoomName = roomName.text;
-            RoomOptions myRoomOptions = new RoomOptions() {MaxPlayers = 20}; //Opções que a sala terá
+            RoomOptions myRoomOptions = new RoomOptions() {MaxPlayers = 4}; //Opções que a sala terá
             PhotonNetwork.JoinOrCreateRoom(tempRoomName, myRoomOptions, TypedLobby.Default); //Entra na sala com o nome informado, se não houver, cria uma
+        }
+
+        public void ButtonPartidaPvP() {
+
+            gamemode.Add(gameModeKey, "PvP");
+            PhotonNetwork.JoinLobby();
+        }
+
+        public void ButtonPartidaPvAI() {
+
+            gamemode.Add(gameModeKey, "PvAI");
+            PhotonNetwork.JoinLobby();
         }
 
         public void ConectandoComServidorPhoton() {
@@ -94,14 +121,25 @@ namespace IntroducaoPhotonUdemy {
 
         //Ao entrar no Lobby
         public override void OnJoinedLobby() {
+
             print("Entrou no Lobby");
-            PhotonNetwork.JoinRandomRoom(); //Tentar entrar em uma sala randomicamente
+            PhotonNetwork.JoinRandomRoom(gamemode, 0); //Tentar entrar em uma sala randomicamente
         }
 
         //se nao existir sala ao tentar entrar randomicamente, vai retornar erro
         //Será criada uma nova sala
         public override void OnJoinRandomFailed(short returnCode, string message) {
-            PhotonNetwork.CreateRoom(null);
+
+            string roomTemp = "Room" + Random.Range(1000, 10000);
+
+            RoomOptions options = new RoomOptions();
+            options.IsOpen = true;
+            options.IsVisible = true;
+            options.MaxPlayers = gameMaxPlayer;
+            options.CustomRoomProperties = gamemode;
+            options.CustomRoomPropertiesForLobby = new string[] { gameModeKey };
+
+            PhotonNetwork.CreateRoom(roomTemp, options);
         }
 
         //Ao entrar em uma sala
@@ -113,14 +151,22 @@ namespace IntroducaoPhotonUdemy {
             loginUI.gameObject.SetActive(false);
             partidasUI.gameObject.SetActive(false);
 
+            object typeGameValue;
+
+            if(PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(gameModeKey, out typeGameValue)) {
+                print("GameMode: " + typeGameValue.ToString());
+                //print("GameMode: " + (string)typeGameValue);
+            }
+
            //GameObject playerTemp = Instantiate(myPlayer, transform.position, transform.rotation) as GameObject;
            PhotonNetwork.Instantiate(myPlayer.name, transform.position, transform.rotation, 0); //Instanciando jogador no multiplayer
+           //PhotonNetwork.LoadLevel(1);
         }
 
         //Chamado ao desconectar do servidor da photon (ex: internet caiu)
         public override void OnDisconnected(DisconnectCause cause) { 
             print("Desconetado do servidor: " + cause);
-            PhotonNetwork.ConnectToRegion("cn"); //Usado para conectar em um servidor de determinada região //As regiões estão em: https://doc.photonengine.com/en-us/realtime/current/connection-and-authentication/regions
+            //PhotonNetwork.ConnectToRegion("cn"); //Usado para conectar em um servidor de determinada região //As regiões estão em: https://doc.photonengine.com/en-us/realtime/current/connection-and-authentication/regions
            // isConnected = false;
         }
 #endregion
