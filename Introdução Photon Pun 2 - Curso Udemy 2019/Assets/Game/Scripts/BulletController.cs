@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 namespace IntroducaoPhotonUdemy  {
 
@@ -12,6 +13,8 @@ namespace IntroducaoPhotonUdemy  {
             public float bulletLifeTime;
             public float bulletTimeCount;
 
+            public float bulletDamage = 10f;
+
             // Start is called before the first frame update
             void Start()
             {
@@ -21,13 +24,21 @@ namespace IntroducaoPhotonUdemy  {
             }
 
             // Update is called once per frame
-            void Update()
-            {
+            void Update() {
+
                 if(bulletTimeCount >= bulletLifeTime) {
                     Destroy(this.gameObject);
                 }
 
                 bulletTimeCount += Time.deltaTime;
+            }
+
+            private void OnTriggerEnter2D(Collider2D target) {
+
+                if(target.CompareTag("Player") && target.GetComponent<PlayerController>() && target.GetComponent<PhotonView>().IsMine) {
+                    print("PlayerID: " + target.GetComponent<PhotonView>().Owner.ActorNumber + " PlayerName: " + target.GetComponent<PhotonView>().Owner.NickName);
+                    target.GetComponent<PlayerController>().TakeDamage(-bulletDamage);
+                }
             }
         }   
 }

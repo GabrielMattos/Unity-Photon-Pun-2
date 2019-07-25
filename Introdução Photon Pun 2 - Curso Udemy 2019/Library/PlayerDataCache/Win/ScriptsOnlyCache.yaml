@@ -14,9 +14,6 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
     PhotonUnityNetworking.Editor.dll:
-    - Photon.Pun.PhotonRigidbody2DViewEditor
-    - Photon.Pun.PhotonTransformViewEditor
-    - Photon.Pun.PhotonViewInspector
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
@@ -474,7 +471,7 @@ ScriptsOnlyBuild:
     className: PhotonHandler
   - hash:
       serializedVersion: 2
-      Hash: 760f4ac1403e73ba64ccd7f900b6d8be
+      Hash: daa01221026c0bb71d85f5b537088ba7
     assemblyName: Assembly-CSharp.dll
     namespaceName: IntroducaoPhotonUdemy
     className: BulletController

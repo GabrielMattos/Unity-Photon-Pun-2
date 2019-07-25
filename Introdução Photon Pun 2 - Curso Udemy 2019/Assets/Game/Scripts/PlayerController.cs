@@ -55,16 +55,27 @@ namespace IntroducaoPhotonUdemy  {
                 photonView.RPC("Shoot", RpcTarget.All);
             }
 
-            if(Input.GetMouseButtonDown(1)) {
+            /*if(Input.GetMouseButtonDown(1)) {
                 
                 PhotonNetwork.Instantiate(bulletPrefabPhotonView.name, spawnBullet.transform.position, spawnBullet.transform.rotation, 0); //Instanciando objetos na rede, podendo ser visto por outros jogadores
-            }
+            } */
         }
 
         [PunRPC] //Isso quer dizer que a função é pra ser vista na rede
         void Shoot() {
-
+            
             Instantiate(bulletPrefab, spawnBullet.transform.position, spawnBullet.transform.rotation);
+        }
+
+        public void TakeDamage(float value) {
+
+            photonView.RPC("TakeDamageNetwork", RpcTarget.AllBuffered, value);
+        }
+
+        [PunRPC]
+        void TakeDamageNetwork(float value) {
+
+            HealthManager(value);
         }
 
         
