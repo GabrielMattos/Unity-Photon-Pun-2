@@ -44,7 +44,7 @@ namespace IntroducaoPhotonUdemy  {
                 if(target.CompareTag("Player") && target.GetComponent<PlayerController>() && target.GetComponent<PhotonView>().IsMine) {
                     print("PlayerID: " + target.GetComponent<PhotonView>().Owner.ActorNumber + " PlayerName: " + target.GetComponent<PhotonView>().Owner.NickName);
                     target.GetComponent<PlayerController>().TakeDamage(-bulletDamage);
-                    this.GetComponent<PhotonView>().RPC("BulletDestroy", RpcTarget.AllViaServer);
+                    this.GetComponent<PhotonView>().RPC("BulletDestroy", RpcTarget.AllViaServer); //Aqui não está destruindo para novos jogadores que entram na sala - corrigir depois
                 }
 
                 Destroy(this.gameObject);

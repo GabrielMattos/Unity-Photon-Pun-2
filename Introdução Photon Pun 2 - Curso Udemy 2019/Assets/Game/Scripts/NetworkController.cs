@@ -12,7 +12,7 @@ namespace IntroducaoPhotonUdemy {
 
 /* SCRIPT PARA CONEXÃO INICIAL DO PHOTON*/
 #region NetworkController
-    public class NetworkController : MonoBehaviourPunCallbacks {
+    public class NetworkController : MonoBehaviourPunCallbacks, ILobbyCallbacks {
 
 #region VARIABLES
           //bool isConnected = false;
@@ -89,6 +89,11 @@ namespace IntroducaoPhotonUdemy {
         public void ButtonPartidaPvP() {
 
             gamemode.Add(gameModeKey, "PvP");
+
+/*          TypedLobby teste = new TypedLobby();
+            teste.Name = "PvP";
+            teste.Type = LobbyType.Default;
+*/
             PhotonNetwork.JoinLobby();
         }
 
@@ -97,6 +102,31 @@ namespace IntroducaoPhotonUdemy {
             gamemode.Add(gameModeKey, "PvAI");
             PhotonNetwork.JoinLobby();
         }
+
+/* 
+            public override void OnRoomListUpdate(List<RoomInfo> roomList) {
+
+            ListaDeSalas(roomList);
+        }
+
+        void ListaDeSalas(List<RoomInfo> roomList) { //Leva 5 segundos para ser atualizada
+
+            foreach (var item in roomList) {
+
+                print("Room Name: " + item.Name);
+                print("Room IsOpen: " + item.IsOpen);
+                print("Room IsVisible: " + item.IsVisible);
+                print("Room MaxPlayers: " + item.MaxPlayers);
+                print("Room PlayerCount: " + item.PlayerCount);
+
+                object temp;
+                item.CustomProperties.TryGetValue(gameModeKey, out temp);
+
+                print("Room CustomProperties: " + temp.ToString());
+            }
+        }
+*/
+ 
 
         public void ConectandoComServidorPhoton() {
 
