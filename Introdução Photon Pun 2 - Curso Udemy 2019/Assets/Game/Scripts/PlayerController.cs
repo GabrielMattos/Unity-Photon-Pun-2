@@ -22,6 +22,8 @@ namespace IntroducaoPhotonUdemy  {
         public GameObject bulletPrefab;
         public GameObject bulletPrefabPhotonView;
 
+        private bool gameIsOver;
+
 
         // Start is called before the first frame update
         void Start() {
@@ -29,6 +31,7 @@ namespace IntroducaoPhotonUdemy  {
             myrb = GetComponent<Rigidbody2D>();
             myPhotonView = GetComponent<PhotonView>();
             HealthManager(playerHealthMax);
+            gameIsOver = false;
         }
 
         // Update is called once per frame
@@ -75,6 +78,24 @@ namespace IntroducaoPhotonUdemy  {
         void TakeDamageNetwork(float value) {
 
             HealthManager(value);
+
+            if(playerCurrentHealth <= 0f && photonView.IsMine && !gameIsOver) {
+                    photonView.RPC("IsGameOver", RpcTarget.MasterClient); //Avisa ao master que o jogo acabou, pois o jogador tem o HP menor ou igual a zero
+                }
+
+            if(gameIsOver) {
+                playerCurrentHealth = 0f;
+                print("ACABOU! JÁ ERA!");
+            }
+        }
+
+        [PunRPC] 
+        void IsGameOver() {
+
+            if(photonView.Owner.IsMasterClient) { //Apenas o Master executa
+                print("GameOver - Sou Master!");
+                gameIsOver = true;
+            }
         }
 
         
