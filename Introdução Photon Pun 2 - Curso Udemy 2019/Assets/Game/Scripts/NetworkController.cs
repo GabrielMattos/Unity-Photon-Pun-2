@@ -189,15 +189,17 @@ namespace IntroducaoPhotonUdemy {
 
             foreach (var item in PhotonNetwork.PlayerList) { //Lista de informações do player ao entrar na sala
 
-                //print("Name: " + item.NickName);
-                //print("IsMaster? : " + item.IsMasterClient);
+                print("Name: " + item.NickName);
+                print("IsMaster? : " + item.IsMasterClient);
 
                 //Customizando o player - Atribuindo valores aos mesmos
                 Hastable playerCustom = new Hastable();
                 playerCustom.Add("Lives", 3);
-                playerCustom.Add("Score", null);
+                playerCustom.Add("Score", 0);
 
                 item.SetCustomProperties(playerCustom, null, null);
+
+                item.SetScore(0);
             }
 
            //GameObject playerTemp = Instantiate(myPlayer, transform.position, transform.rotation) as GameObject;

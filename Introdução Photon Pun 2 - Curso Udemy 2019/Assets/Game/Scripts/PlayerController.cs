@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
 
 namespace IntroducaoPhotonUdemy  {
@@ -23,7 +24,6 @@ namespace IntroducaoPhotonUdemy  {
         public GameObject bulletPrefabPhotonView;
 
         private bool gameIsOver;
-
 
         // Start is called before the first frame update
         void Start() {
@@ -69,33 +69,70 @@ namespace IntroducaoPhotonUdemy  {
             Instantiate(bulletPrefab, spawnBullet.transform.position, spawnBullet.transform.rotation);
         }
 
-        public void TakeDamage(float value) {
+        public void TakeDamage(float value, Player playerTemp) {
 
-            photonView.RPC("TakeDamageNetwork", RpcTarget.AllBuffered, value);
+            photonView.RPC("TakeDamageNetwork", RpcTarget.AllBuffered, value, playerTemp);
         }
 
         [PunRPC]
-        void TakeDamageNetwork(float value) {
+        void TakeDamageNetwork(float value, Player playerTemp) {
 
             HealthManager(value);
+            
+            object playerScoreTempGet;
+            playerTemp.CustomProperties.TryGetValue("Score", out playerScoreTempGet);
 
-            if(playerCurrentHealth <= 0f && photonView.IsMine && !gameIsOver) {
-                    photonView.RPC("IsGameOver", RpcTarget.MasterClient); //Avisa ao master que o jogo acabou, pois o jogador tem o HP menor ou igual a zero
-                }
+            int soma = (int) playerScoreTempGet;
+            soma += 10;
 
-            if(gameIsOver) {
-                playerCurrentHealth = 0f;
-                print("ACABOU! JÁ ERA!");
+            ExitGames.Client.Photon.Hashtable playerHashtableTemp = new ExitGames.Client.Photon.Hashtable();
+            playerHashtableTemp.Add("Score", soma);
+
+            playerTemp.SetCustomProperties(playerHashtableTemp, null, null);
+
+            playerTemp.AddScore(10);
+
+            if(playerCurrentHealth <= 0f && myPhotonView.IsMine) {
+                //Aqui deveria estar enviando só pro Master, porém quando o master vence nao funciona
+                photonView.RPC("IsGameOver", RpcTarget.All); //Avisa ao master que o jogo acabou, pois o jogador tem o HP menor ou igual a zero
             }
+
+            //if(gameIsOver) {
+              //  playerCurrentHealth = 0f;
+                //print("ACABOU! JÁ ERA!");
+            //}
         }
 
         [PunRPC] 
-        void IsGameOver() {
+        void IsGameOver() { //No momento aqui encontra-ser um bug - o jogador Master o qual cria a sala, não consegue ser o vencedor da partida.
+            
+                foreach (var item in PhotonNetwork.PlayerList) {
 
-            if(photonView.Owner.IsMasterClient) { //Apenas o Master executa
-                print("GameOver - Sou Master!");
-                gameIsOver = true;
+                    object playerScoreTempGet;
+                    item.CustomProperties.TryGetValue("Score", out playerScoreTempGet);
+                    print("Player Name: " + item.NickName + " | Score: " + playerScoreTempGet.ToString() + " | Score via Photon: " + item.GetScore());
+                }
+            
+            
+            
+            
+            /*print("PASSEI POR AQUI!");
+
+            if(!myPhotonView.Owner.IsMasterClient) {
+                print("Meu nome: " + PhotonNetwork.NickName + " | Não sou o master!");
+                print(PhotonNetwork.MasterClient.NickName + " é o MASTER");
             }
+
+            if(myPhotonView.Owner.IsMasterClient) { //Apenas o Master executa
+                print("NOME: " + PhotonNetwork.NickName + " Sou Master! GameOver");
+
+                foreach (var item in PhotonNetwork.PlayerList) {
+
+                    object playerScoreTempGet;
+                    item.CustomProperties.TryGetValue("Score", out playerScoreTempGet);
+                    print("Player Name: " + item.NickName + " | Score: " + playerScoreTempGet.ToString() + " | Score via Photon: " + item.GetScore());
+                }
+            } */
         }
 
         
