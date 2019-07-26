@@ -104,13 +104,12 @@ namespace IntroducaoPhotonUdemy {
         }
 
 /* 
-            public override void OnRoomListUpdate(List<RoomInfo> roomList) {
+        public override void OnRoomListUpdate(List<RoomInfo> roomList) { //Atualização de salas existentes -Leva 5 segundos para ser atualizada
 
             ListaDeSalas(roomList);
         }
 
-        void ListaDeSalas(List<RoomInfo> roomList) { //Leva 5 segundos para ser atualizada
-
+        void ListaDeSalas(List<RoomInfo> roomList) { 
             foreach (var item in roomList) {
 
                 print("Room Name: " + item.Name);
@@ -186,6 +185,19 @@ namespace IntroducaoPhotonUdemy {
             if(PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(gameModeKey, out typeGameValue)) {
                 print("GameMode: " + typeGameValue.ToString());
                 //print("GameMode: " + (string)typeGameValue);
+            }
+
+            foreach (var item in PhotonNetwork.PlayerList) { //Lista de informações do player ao entrar na sala
+
+                //print("Name: " + item.NickName);
+                //print("IsMaster? : " + item.IsMasterClient);
+
+                //Customizando o player - Atribuindo valores aos mesmos
+                Hastable playerCustom = new Hastable();
+                playerCustom.Add("Lives", 3);
+                playerCustom.Add("Score", null);
+
+                item.SetCustomProperties(playerCustom, null, null);
             }
 
            //GameObject playerTemp = Instantiate(myPlayer, transform.position, transform.rotation) as GameObject;
