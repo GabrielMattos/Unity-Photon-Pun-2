@@ -4,6 +4,9 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
+using Photon.Pun.UtilityScripts;
+using Hastable = ExitGames.Client.Photon.Hashtable;
+
 namespace Nigthmare {
     
     public class NetworkController : MonoBehaviourPunCallbacks {
@@ -12,10 +15,27 @@ namespace Nigthmare {
 
         public Lobby lobbyScript;
 
+        public override void OnEnable() {
+
+            base.OnEnable();
+            CountdownTimer.OnCountdownTimerHasExpired += OnCountdownTimeIsExpired;
+        }
+
         void Start() {
 
             PhotonNetwork.AutomaticallySyncScene = true; //Os players seguem o Master cliente nas cenas
         }//Start
+
+        public override void OnDisable() {
+
+            base.OnDisable();
+            CountdownTimer.OnCountdownTimerHasExpired -= OnCountdownTimeIsExpired;
+        }
+
+        public void OnCountdownTimeIsExpired() {
+
+            StartGame();
+        }
 
         void Update() {
 
@@ -67,7 +87,13 @@ namespace Nigthmare {
             if(PhotonNetwork.CurrentRoom.PlayerCount == playersRoomMax) {
                 foreach (var item in PhotonNetwork.PlayerList) {
                     if(item.IsMasterClient) {
-                        StartGame();
+                        //StartGame();
+                        Hastable myProps = new Hastable {
+                            {CountdownTimer.CountdownStartTime, (float)PhotonNetwork.Time}
+                        };
+
+
+                        PhotonNetwork.CurrentRoom.SetCustomProperties(myProps);
                     }
                 }
             }
