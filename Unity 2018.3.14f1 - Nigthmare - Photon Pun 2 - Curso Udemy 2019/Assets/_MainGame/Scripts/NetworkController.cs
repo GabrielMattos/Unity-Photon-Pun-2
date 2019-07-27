@@ -8,11 +8,13 @@ namespace Nigthmare {
     
     public class NetworkController : MonoBehaviourPunCallbacks {
 
+        public byte playersRoomMax = 2;
+
         public Lobby lobbyScript;
 
         void Start() {
 
-            
+            PhotonNetwork.AutomaticallySyncScene = true; //Os players seguem o Master cliente nas cenas
         }//Start
 
         void Update() {
@@ -29,6 +31,51 @@ namespace Nigthmare {
 
             print("OnConnectedToMaster");
             lobbyScript.PanelLobbyActive();
+            PhotonNetwork.JoinLobby();
+        }
+
+        public override void OnJoinedLobby() {
+            
+            Debug.Log("OnJoinedLobby");
+            PhotonNetwork.JoinRandomRoom();
+        }
+
+        //Se não conseguir entrar em uma sala randomicamente, cria uma nova sala
+        public override void OnJoinRandomFailed(short returnCode, string message) {
+
+            Debug.Log("OnJoinRandomFailed");
+
+            string roomName = "Room" + Random.Range(1000, 10000);
+            RoomOptions myRoomOptions = new RoomOptions() {
+                IsOpen = true,
+                IsVisible = true,
+                MaxPlayers = playersRoomMax
+            };
+
+            PhotonNetwork.CreateRoom(roomName, myRoomOptions, TypedLobby.Default);
+        }
+
+        public override void OnJoinedRoom() { //Master cliente entra primeiro, os proximos em seguida
+
+            Debug.Log("OnJoinedRoom");
+        }
+
+        public override void OnPlayerEnteredRoom(Player newPlayer) { //quando um novo player entrar na sala
+
+            Debug.Log("OnPlayerEnteredRoom");
+
+            if(PhotonNetwork.CurrentRoom.PlayerCount == playersRoomMax) {
+                foreach (var item in PhotonNetwork.PlayerList) {
+                    if(item.IsMasterClient) {
+                        StartGame();
+                    }
+                }
+            }
+        }
+
+        void StartGame() {
+
+            PhotonNetwork.LoadLevel(1);
         }
 
         public override void OnDisconnected(DisconnectCause cause) {
