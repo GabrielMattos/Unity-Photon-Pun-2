@@ -12,17 +12,32 @@ namespace Nigthmare {
 
         public Text txtLobbyAguardar;
         public Text txtLobbyTimeStart;
+        //public Text playerStatus;
+        public Text txtPlayerStatus;
+        public InputField inputPlayerName;
+
+        public string playerName;
 
         public string lobbyTimeStartText = "Start Game in {0}...";
+        
+        void Awake() {
+
+            playerName = "Player" + Random.Range(1000, 10000);
+        }
 
         void Start() {
 
             txtLobbyTimeStart.gameObject.SetActive(false);
             PanelLoginActive();
+
+            inputPlayerName.text = playerName;
+
+            txtPlayerStatus.gameObject.SetActive(false);
         }//Start
 
         void Update() {
 
+            //playerStatus.text = Photon.Pun.PhotonNetwork.NetworkClientState.ToString(); //Mostra o Status atual do player pelo servidor
             
         }//Update
 

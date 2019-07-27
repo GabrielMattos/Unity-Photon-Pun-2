@@ -40,11 +40,14 @@ namespace Nigthmare {
         public void BtnCancelar() {
 
             PhotonNetwork.Disconnect(); //DisconnectByClientLogic
+            lobbyScript.txtPlayerStatus.gameObject.SetActive(false);
         }
 
         public void BtnLogin() {
 
             PhotonNetwork.ConnectUsingSettings();
+            PhotonNetwork.NickName = lobbyScript.inputPlayerName.text;
+            lobbyScript.txtPlayerStatus.gameObject.SetActive(true);
         }
 
     }//SCRIPTNAME
