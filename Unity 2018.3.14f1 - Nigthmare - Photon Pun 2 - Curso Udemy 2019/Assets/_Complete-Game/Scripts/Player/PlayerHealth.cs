@@ -23,7 +23,6 @@ namespace CompleteProject
         bool isDead;                                                // Whether the player is dead.
         bool damaged;                                               // True when the player gets damaged.
 
-
         void Awake ()
         {
             // Setting up the references.
@@ -34,6 +33,14 @@ namespace CompleteProject
 
             // Set the initial health of the player.
             currentHealth = startingHealth;
+
+        }
+
+        void Start() {
+
+            healthSlider = GameObject.Find("HealthSlider").GetComponent<Slider>();
+            damageImage = GameObject.Find("DamageImage").GetComponent<Image>();
+
         }
 
 

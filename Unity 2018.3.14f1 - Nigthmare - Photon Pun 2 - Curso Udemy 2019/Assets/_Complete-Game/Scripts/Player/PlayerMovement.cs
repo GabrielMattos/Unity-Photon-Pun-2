@@ -13,7 +13,7 @@ namespace CompleteProject
         Animator anim;                      // Reference to the animator component.
         Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
 
-        PhotonView myPhotonView;
+        public PhotonView myPhotonView;
 
 
 
@@ -43,18 +43,19 @@ namespace CompleteProject
                 return;
             }
 
-            // Store the input axes.
-            float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
-            float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
+                                
+                // Store the input axes.
+                float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
+                float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
 
-            // Move the player around the scene.
-            Move (h, v);
+                // Move the player around the scene.
+                Move (h, v);
 
-            // Turn the player to face the mouse cursor.
-            Turning ();
+                // Turn the player to face the mouse cursor.
+                Turning ();
 
-            // Animate the player.
-            Animating (h, v);
+                // Animate the player.
+                Animating (h, v);
         }
 
 

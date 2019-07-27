@@ -19,12 +19,12 @@ namespace CompleteProject
 
         void Update ()
         {
-            // If the player has run out of health...
-            if(playerHealth.currentHealth <= 0)
+            // If the player has run out of health... //Aqui está buscando pelo player original, e faz com que o jogador Multiplayer morra assim que entra na sala, corrigir depois
+           /* if(playerHealth.currentHealth <= 0)
             {
                 // ... tell the animator the game is over.
                 anim.SetTrigger ("GameOver");
-            }
+            } */
         }
     }
 }
