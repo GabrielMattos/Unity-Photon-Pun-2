@@ -15,10 +15,11 @@ namespace Nigthmare {
         //public Text playerStatus;
         public Text txtPlayerStatus;
         public InputField inputPlayerName;
-
         public string playerName;
 
-        public string lobbyTimeStartText = "Start Game in {0}...";
+        public Text txtCountdown;
+
+        //public string lobbyTimeStartText = "Start Game in {0}...";
         
         void Awake() {
 

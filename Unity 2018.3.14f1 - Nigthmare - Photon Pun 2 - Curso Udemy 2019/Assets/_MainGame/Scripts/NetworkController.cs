@@ -85,21 +85,28 @@ namespace Nigthmare {
             Debug.Log("OnPlayerEnteredRoom");
 
             if(PhotonNetwork.CurrentRoom.PlayerCount == playersRoomMax) {
+
                 foreach (var item in PhotonNetwork.PlayerList) {
                     if(item.IsMasterClient) {
                         //StartGame();
                         Hastable myProps = new Hastable {
                             {CountdownTimer.CountdownStartTime, (float)PhotonNetwork.Time}
                         };
-
-
+                        
                         PhotonNetwork.CurrentRoom.SetCustomProperties(myProps);
                     }
                 }
             }
         }
 
-        void StartGame() {
+        public override void OnRoomPropertiesUpdate(Hastable propertiesThatChanged) { //Se as propriedades da sala foram alteradas
+
+            if(propertiesThatChanged.ContainsKey(CountdownTimer.CountdownStartTime)) {
+                lobbyScript.txtLobbyTimeStart.gameObject.SetActive(true);
+            }
+        }
+
+        void StartGame() { //A cena é carregada
 
             PhotonNetwork.LoadLevel(1);
         }
