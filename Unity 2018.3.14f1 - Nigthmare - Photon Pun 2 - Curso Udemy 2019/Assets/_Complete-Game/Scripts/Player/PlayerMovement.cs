@@ -14,6 +14,7 @@ namespace CompleteProject
         Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
 
         public PhotonView myPhotonView;
+        public GameObject myCamera;
 
 
 
@@ -33,6 +34,10 @@ namespace CompleteProject
             anim = GetComponent <Animator> ();
             playerRigidbody = GetComponent <Rigidbody> ();
             myPhotonView = GetComponent<PhotonView>();
+
+            GameObject tempmyCamera = Instantiate(myCamera) as GameObject;
+            //myCamera.GetComponent<CameraFollow>().target = this.gameObject.transform;
+            myCamera.gameObject.GetComponent<CameraFollow>().target = this.gameObject.transform;
         }
 
 
@@ -40,6 +45,7 @@ namespace CompleteProject
         {
 
             if(!myPhotonView.IsMine) {
+                myCamera.gameObject.SetActive(false);
                 return;
             }
 

@@ -108,7 +108,7 @@ namespace Nigthmare {
 
         void StartGame() { //A cena é carregada
 
-            PhotonNetwork.LoadLevel(1);
+            PhotonNetwork.LoadLevel("_Complete-Game-PVP");
         }
 
         public override void OnDisconnected(DisconnectCause cause) {

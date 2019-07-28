@@ -5,7 +5,20 @@ namespace CompleteProject
 {
     public class CameraFollow : MonoBehaviour
     {
-        public Transform target;            // The position that that camera will be following.
+        public Transform target;
+        public Vector3 offset = new Vector3(0f, 7.5f, 0f);
+
+
+        public void LateUpdate()
+        {
+            transform.position = target.position + offset;
+        }
+    }
+
+
+
+
+/*        public Transform target;            // The position that that camera will be following.
         public float smoothing = 5f;        // The speed with which the camera will be following.
 
 
@@ -27,5 +40,5 @@ namespace CompleteProject
             // Smoothly interpolate between the camera's current position and it's target position.
             transform.position = Vector3.Lerp (transform.position, targetCamPos, smoothing * Time.deltaTime);
         }
-    }
+    } */
 }

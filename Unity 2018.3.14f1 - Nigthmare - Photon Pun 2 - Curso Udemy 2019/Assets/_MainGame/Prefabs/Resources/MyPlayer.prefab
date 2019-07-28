@@ -1278,6 +1278,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   myPhotonView: {fileID: 0}
+  myCamera: {fileID: 4179835516340062320, guid: 96e2028cff1db2445929e7ec5e704a5c,
+    type: 3}
 --- !u!136 &5109737305696542482
 CapsuleCollider:
   m_ObjectHideFlags: 0
