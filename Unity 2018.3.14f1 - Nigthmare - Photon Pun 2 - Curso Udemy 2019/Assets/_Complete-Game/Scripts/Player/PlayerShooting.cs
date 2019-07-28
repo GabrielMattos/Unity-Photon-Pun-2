@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnitySampleAssets.CrossPlatformInput;
+using Photon.Pun;
 
 namespace CompleteProject
 {
@@ -21,6 +23,8 @@ namespace CompleteProject
 		public Light faceLight;								// Duh
         float effectsDisplayTime = 0.2f;                // The proportion of the timeBetweenBullets that the effects will display for.
 
+        PhotonView myPhotonView;
+
 
         void Awake ()
         {
@@ -33,11 +37,21 @@ namespace CompleteProject
             gunAudio = GetComponent<AudioSource> ();
             gunLight = GetComponent<Light> ();
 			//faceLight = GetComponentInChildren<Light> ();
+
+            myPhotonView = GetComponent<PhotonView>();
         }
 
 
         void Update ()
         {
+            ShootUpdate();
+        }
+
+        void ShootUpdate() {
+            
+            if(!myPhotonView.IsMine) {
+                return;
+            }
             // Add the time since Update was last called to the timer.
             timer += Time.deltaTime;
 
@@ -55,13 +69,14 @@ namespace CompleteProject
                 // ... shoot the gun
                 Shoot();
             }
-#endif
-            // If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
+#endif      
+/*            // If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
             if(timer >= timeBetweenBullets * effectsDisplayTime)
             {
                 // ... disable the effects.
                 DisableEffects ();
-            }
+            } */
+
         }
 
 
@@ -76,6 +91,64 @@ namespace CompleteProject
 
         void Shoot ()
         {
+            /*            // Reset the timer.
+            timer = 0f;
+
+            // Play the gun shot audioclip.
+            gunAudio.Play ();
+
+            // Enable the lights.
+            gunLight.enabled = true;
+			faceLight.enabled = true;
+
+            // Stop the particles from playing if they were, then start the particles.
+            gunParticles.Stop ();
+            gunParticles.Play ();
+
+            // Enable the line renderer and set it's first position to be the end of the gun.
+            gunLine.enabled = true;
+            gunLine.SetPosition (0, transform.position); */
+
+
+            // Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
+            shootRay.origin = transform.position;
+            shootRay.direction = transform.forward;
+
+            // Perform the raycast against gameobjects on the shootable layer and if it hits something...
+            if(Physics.Raycast (shootRay, out shootHit, range, shootableMask))
+            {
+                // Try and find an EnemyHealth script on the gameobject hit.
+                //EnemyHealth enemyHealth = shootHit.collider.GetComponent <EnemyHealth> ();
+                PlayerHealth playeryHealth = shootHit.collider.GetComponent<PlayerHealth>();
+
+                // If the EnemyHealth component exist...
+                if(playeryHealth != null)
+                {
+                    // ... the enemy should take damage.
+                    playeryHealth.TakeDamage (damagePerShot);
+                }
+
+                // Set the second position of the line renderer to the point the raycast hit.
+                //gunLine.SetPosition (1, shootHit.point);// MEU
+                ShootEffect(shootHit.point);//Multiplayer
+            }
+            // If the raycast didn't hit anything on the shootable layer...
+            else
+            {
+                // ... set the second position of the line renderer to the fullest extent of the gun's range.
+             //   gunLine.SetPosition (1, shootRay.origin + shootRay.direction * range);
+                ShootEffect(shootRay.origin + shootRay.direction * range);//Multiplayer
+            }
+        }
+
+        void ShootEffect(Vector3 hitPoint) {
+
+            myPhotonView.RPC("ShootEffectNetwork", RpcTarget.All, hitPoint);
+        }
+
+        [PunRPC]
+        void ShootEffectNetwork(Vector3 hitPoint) {
+
             // Reset the timer.
             timer = 0f;
 
@@ -94,32 +167,17 @@ namespace CompleteProject
             gunLine.enabled = true;
             gunLine.SetPosition (0, transform.position);
 
-            // Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
-            shootRay.origin = transform.position;
-            shootRay.direction = transform.forward;
+            //FINAL
+            gunLine.SetPosition (1, hitPoint);
 
-            // Perform the raycast against gameobjects on the shootable layer and if it hits something...
-            if(Physics.Raycast (shootRay, out shootHit, range, shootableMask))
-            {
-                // Try and find an EnemyHealth script on the gameobject hit.
-                EnemyHealth enemyHealth = shootHit.collider.GetComponent <EnemyHealth> ();
+            //Aguardar para desabilitar
+            StartCoroutine(WhaitAndDisableEffects(timeBetweenBullets * effectsDisplayTime));
+        }
 
-                // If the EnemyHealth component exist...
-                if(enemyHealth != null)
-                {
-                    // ... the enemy should take damage.
-                    enemyHealth.TakeDamage (damagePerShot, shootHit.point);
-                }
+        private IEnumerator WhaitAndDisableEffects(float waitTime) {
 
-                // Set the second position of the line renderer to the point the raycast hit.
-                gunLine.SetPosition (1, shootHit.point);
-            }
-            // If the raycast didn't hit anything on the shootable layer...
-            else
-            {
-                // ... set the second position of the line renderer to the fullest extent of the gun's range.
-                gunLine.SetPosition (1, shootRay.origin + shootRay.direction * range);
-            }
+            yield return new WaitForSeconds(waitTime);
+            DisableEffects();
         }
     }
 }

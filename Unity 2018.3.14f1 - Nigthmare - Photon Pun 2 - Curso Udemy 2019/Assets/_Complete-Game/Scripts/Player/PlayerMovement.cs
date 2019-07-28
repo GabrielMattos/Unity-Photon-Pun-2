@@ -80,7 +80,7 @@ namespace CompleteProject
 
         void Turning ()
         {
-#if !MOBILE_INPUT
+/*#if !MOBILE_INPUT
             // Create a ray from the mouse cursor on screen in the direction of the camera.
             Ray camRay = Camera.main.ScreenPointToRay (Input.mousePosition);
 
@@ -103,7 +103,7 @@ namespace CompleteProject
                 playerRigidbody.MoveRotation (newRotatation);
             }
 #else
-
+ */
             Vector3 turnDir = new Vector3(CrossPlatformInputManager.GetAxisRaw("Mouse X") , 0f , CrossPlatformInputManager.GetAxisRaw("Mouse Y"));
 
             if (turnDir != Vector3.zero)
@@ -120,7 +120,7 @@ namespace CompleteProject
                 // Set the player's rotation to this new rotation.
                 playerRigidbody.MoveRotation(newRotatation);
             }
-#endif
+//#endif
         }
 
 

@@ -24,7 +24,7 @@ namespace Nigthmare {
 
         void Update() {
 
-            playerCanvas.transform.LookAt(Camera.main.transform);            
+            playerCanvas.transform.LookAt(this.gameObject.GetComponent<CompleteProject.PlayerMovement>().myCamera.transform);            
         }//Update
 
     }//SCRIPTNAME
