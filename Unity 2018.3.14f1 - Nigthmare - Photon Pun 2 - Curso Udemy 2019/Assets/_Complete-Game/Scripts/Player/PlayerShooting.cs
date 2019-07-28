@@ -122,10 +122,10 @@ namespace CompleteProject
                 PlayerHealth playeryHealth = shootHit.collider.GetComponent<PlayerHealth>();
 
                 // If the EnemyHealth component exist...
-                if(playeryHealth != null)
+                if(playeryHealth != null && myPhotonView.IsMine)
                 {
                     // ... the enemy should take damage.
-                    playeryHealth.TakeDamage (damagePerShot);
+                    playeryHealth.TakeDamage (damagePerShot, shootHit.point);
                 }
 
                 // Set the second position of the line renderer to the point the raycast hit.

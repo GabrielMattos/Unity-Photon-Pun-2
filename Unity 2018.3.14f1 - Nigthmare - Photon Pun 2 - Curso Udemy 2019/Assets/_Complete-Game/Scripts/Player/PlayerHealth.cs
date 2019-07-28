@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 namespace CompleteProject
 {
@@ -23,6 +24,11 @@ namespace CompleteProject
         bool isDead;                                                // Whether the player is dead.
         bool damaged;                                               // True when the player gets damaged.
 
+        public ParticleSystem hitParticles;
+        PhotonView myPhotonView;
+
+        public GameObject canvasHUD;
+
         void Awake ()
         {
             // Setting up the references.
@@ -31,9 +37,13 @@ namespace CompleteProject
             playerMovement = GetComponent <PlayerMovement> ();
             playerShooting = GetComponentInChildren <PlayerShooting> ();
 
+
             // Set the initial health of the player.
             currentHealth = startingHealth;
+            //hitParticles = GetComponentInChildren<ParticleSystem>();
+            myPhotonView = GetComponent<PhotonView>();
 
+            
         }
 
         void Start() {
@@ -41,11 +51,17 @@ namespace CompleteProject
             healthSlider = GameObject.Find("HealthSlider").GetComponent<Slider>();
             damageImage = GameObject.Find("DamageImage").GetComponent<Image>();
 
+            if(!myPhotonView.IsMine) {
+                canvasHUD.gameObject.SetActive(false);
+            }
         }
 
 
         void Update ()
-        {
+        {   
+            if(!myPhotonView.IsMine) {
+                return;
+            }
             // If the player has just been damaged...
             if(damaged)
             {
@@ -64,29 +80,39 @@ namespace CompleteProject
         }
 
 
-        public void TakeDamage (int amount)
-        {
-            // Set the damaged flag so the screen will flash.
-            damaged = true;
-
-            // Reduce the current health by the damage amount.
-            currentHealth -= amount;
-
-            // Set the health bar's value to the current health.
-            healthSlider.value = currentHealth;
-
-            // Play the hurt sound effect.
-            playerAudio.Play ();
-
-            // If the player has lost all it's health and the death flag hasn't been set yet...
-            if(currentHealth <= 0 && !isDead)
-            {
-                // ... it should die.
-                Death ();
-            }
+        public void TakeDamage (int amount, Vector3 hitPoint)
+        {   
+            myPhotonView.RPC("TakeDamageNetwork", RpcTarget.All, amount, hitPoint);
         }
 
+        [PunRPC]
+        public void TakeDamageNetwork (int amount, Vector3 hitPoint)
+        {   
+            if(myPhotonView.IsMine) {
+                hitParticles.transform.position = hitPoint;
+                hitParticles.Play();
 
+                // Set the damaged flag so the screen will flash.
+                damaged = true;
+
+                // Reduce the current health by the damage amount.
+                currentHealth -= amount;
+
+                // Set the health bar's value to the current health.
+                healthSlider.value = currentHealth;
+
+                // Play the hurt sound effect.
+                playerAudio.Play ();
+
+                // If the player has lost all it's health and the death flag hasn't been set yet...
+                if(currentHealth <= 0 && !isDead)
+                {
+                    // ... it should die.
+                    //Death ();
+                }
+            }
+            
+        }
         void Death ()
         {
             // Set the death flag so this function won't be called again.
@@ -99,8 +125,8 @@ namespace CompleteProject
             anim.SetTrigger ("Die");
 
             // Set the audiosource to play the death clip and play it (this will stop the hurt sound from playing).
-            playerAudio.clip = deathClip;
-            playerAudio.Play ();
+            //playerAudio.clip = deathClip;
+            //playerAudio.Play ();
 
             // Turn off the movement and shooting scripts.
             playerMovement.enabled = false;

@@ -35,9 +35,14 @@ namespace CompleteProject
             playerRigidbody = GetComponent <Rigidbody> ();
             myPhotonView = GetComponent<PhotonView>();
 
-            GameObject tempmyCamera = Instantiate(myCamera) as GameObject;
+            myCamera = Instantiate(myCamera) as GameObject;
             //myCamera.GetComponent<CameraFollow>().target = this.gameObject.transform;
             myCamera.gameObject.GetComponent<CameraFollow>().target = this.gameObject.transform;
+        }
+
+        void Start() {
+
+            //myCamera.gameObject.SetActive(true);
         }
 
 
