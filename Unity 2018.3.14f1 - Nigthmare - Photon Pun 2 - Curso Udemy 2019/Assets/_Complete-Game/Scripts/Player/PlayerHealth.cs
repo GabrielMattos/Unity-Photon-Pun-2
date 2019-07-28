@@ -51,16 +51,17 @@ namespace CompleteProject
             myPhotonView = GetComponent<PhotonView>();
 
                 //Iniciando Countdownendgame
+            if(myPhotonView.Owner.IsMasterClient) {
                 foreach (var item in PhotonNetwork.PlayerList) {
                     if(item.IsMasterClient) {
                         ExitGames.Client.Photon.Hashtable myProps = new ExitGames.Client.Photon.Hashtable {
-                            {CountdownEndGame.CountdownStartTime, (float)PhotonNetwork.Time}
+                        {CountdownEndGame.CountdownStartTime, (float)PhotonNetwork.Time}
                         };
                         
-                        PhotonNetwork.CurrentRoom.SetCustomProperties(myProps);
-                    }
+                    PhotonNetwork.CurrentRoom.SetCustomProperties(myProps);
+                    }   
                 }
-            
+            }
         }
 
         void Start() {
