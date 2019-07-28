@@ -1253,6 +1253,8 @@ MonoBehaviour:
   hitParticles: {fileID: 3805628654478244409}
   txtPlayerScore: {fileID: 1434159495}
   canvasHUD: {fileID: 1139190131}
+  animatorController: {fileID: 9100000, guid: 8360fd2187b2ccf4e910cb292f55710e, type: 2}
+  hurtClip: {fileID: 8300000, guid: 9922a12f34d0a084aab32de985459723, type: 3}
 --- !u!54 &5109737305686900690
 Rigidbody:
   m_ObjectHideFlags: 0

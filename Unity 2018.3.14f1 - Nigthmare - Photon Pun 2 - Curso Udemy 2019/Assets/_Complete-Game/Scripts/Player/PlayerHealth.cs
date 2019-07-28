@@ -33,6 +33,9 @@ namespace CompleteProject
 
         public GameObject canvasHUD;
 
+        public RuntimeAnimatorController animatorController;
+        public AudioClip hurtClip;
+
         void Awake ()
         {
             // Setting up the references.
@@ -118,7 +121,7 @@ namespace CompleteProject
                     //score
                     playerOrigin.AddScore(amount);
                     // ... it should die.
-                    //Death ();
+                    Death();
                 }
             }
             
@@ -134,21 +137,63 @@ namespace CompleteProject
             // Tell the animator that the player is dead.
             anim.SetTrigger ("Die");
 
+            GetComponent<CapsuleCollider>().isTrigger = true;
+
             // Set the audiosource to play the death clip and play it (this will stop the hurt sound from playing).
-            //playerAudio.clip = deathClip;
-            //playerAudio.Play ();
+            playerAudio.clip = deathClip;
+            playerAudio.Play ();
 
             // Turn off the movement and shooting scripts.
             playerMovement.enabled = false;
             playerShooting.enabled = false;
+
+            StartCoroutine(DeathEffect(2f));
         }
 
 
         public void RestartLevel ()
         {
             // Reload the level that is currently loaded.
-            SceneManager.LoadScene (0);
+            //SceneManager.LoadScene (0);
         }
+
+        private IEnumerator DeathEffect(float time) {
+
+            yield return new WaitForSeconds(time);
+            GetComponent<Rigidbody>().isKinematic = true;
+            transform.Translate(new Vector3(0, -60f, 0) * 2.5f * Time.deltaTime);
+            StartCoroutine(WaitForRespawn(3f));
+        }
+
+        private IEnumerator WaitForRespawn(float time) {
+
+            yield return new WaitForSeconds(time);
+            Respawn();
+        }
+
+        void Respawn() {
+            
+            isDead = false;
+            playerAudio.clip = hurtClip;
+            GetComponent<CapsuleCollider>().isTrigger = false;
+            GetComponent<Rigidbody>().isKinematic = false;
+            anim.runtimeAnimatorController = null;
+            anim.runtimeAnimatorController = animatorController;
+            Transform[] spawnPlayer = GameObject.Find("GameControllerGameplay").GetComponent<Nigthmare.GameControllerGameplay>().spawnPlayer;
+            int tempPosition = Random.Range(0, spawnPlayer.Length);
+            transform.position = spawnPlayer[tempPosition].position;
+            transform.rotation = new Quaternion(0, 0, 0, 0);
+
+            // Reduce the current health by the damage amount.
+            currentHealth = startingHealth;
+
+            // Set the health bar's value to the current health.
+            healthSlider.value = currentHealth;
+
+                        // Turn off the movement and shooting scripts.
+            playerMovement.enabled = true;
+            playerShooting.enabled = true;
+        }    
 
         public override void OnPlayerPropertiesUpdate(Player target, ExitGames.Client.Photon.Hashtable changedProps) {
 

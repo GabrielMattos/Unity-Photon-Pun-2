@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-namespace Name {
+namespace Nigthmare {
     
     public class GameControllerGameplay : MonoBehaviour {
 
