@@ -19,8 +19,6 @@ using UnityEngine.UI;
 using ExitGames.Client.Photon;
 using Photon.Pun;
 
-namespace Photon.Pun.UtilityScripts
-{
     /// <summary>
     /// This is a basic CountdownTimer. In order to start the timer, the MasterClient can add a certain entry to the Custom Room Properties,
     /// which contains the property's name 'StartTime' and the actual start time describing the moment, the timer has been started.
@@ -115,4 +113,3 @@ namespace Photon.Pun.UtilityScripts
             }
         }
     }
-}

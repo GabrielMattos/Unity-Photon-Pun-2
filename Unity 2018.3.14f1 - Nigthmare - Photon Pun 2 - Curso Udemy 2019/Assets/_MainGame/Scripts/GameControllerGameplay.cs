@@ -13,8 +13,18 @@ namespace Nigthmare {
         void Start() {
 
             int tempPosition = Random.Range(0, spawnPlayer.Length);
-            PhotonNetwork.Instantiate(myPlayer.name, spawnPlayer[tempPosition].position, spawnPlayer[tempPosition].rotation);
-        }//Start
+            GameObject playerTemp = PhotonNetwork.Instantiate(myPlayer.name, spawnPlayer[tempPosition].position, spawnPlayer[tempPosition].rotation, 0) as GameObject;
+
+                //Iniciando Countdownendgame
+                //foreach (var item in PhotonNetwork.PlayerList) {
+                    //if(item.IsMasterClient) {
+                    if(playerTemp.GetComponent<PhotonView>().Owner.IsMasterClient) {
+                        ExitGames.Client.Photon.Hashtable myProps = new ExitGames.Client.Photon.Hashtable {
+                        {CountdownEndGame.CountdownStartTime, (float)PhotonNetwork.Time}
+                        }; 
+                        PhotonNetwork.CurrentRoom.SetCustomProperties(myProps);
+                    }   
+                }//Start
 
     }//SCRIPTNAME
     
