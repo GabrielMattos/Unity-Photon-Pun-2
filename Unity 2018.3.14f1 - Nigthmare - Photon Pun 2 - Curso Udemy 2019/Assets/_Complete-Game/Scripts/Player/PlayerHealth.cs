@@ -50,6 +50,16 @@ namespace CompleteProject
             //hitParticles = GetComponentInChildren<ParticleSystem>();
             myPhotonView = GetComponent<PhotonView>();
 
+                //Iniciando Countdownendgame
+                foreach (var item in PhotonNetwork.PlayerList) {
+                    if(item.IsMasterClient) {
+                        ExitGames.Client.Photon.Hashtable myProps = new ExitGames.Client.Photon.Hashtable {
+                            {CountdownEndGame.CountdownStartTime, (float)PhotonNetwork.Time}
+                        };
+                        
+                        PhotonNetwork.CurrentRoom.SetCustomProperties(myProps);
+                    }
+                }
             
         }
 
