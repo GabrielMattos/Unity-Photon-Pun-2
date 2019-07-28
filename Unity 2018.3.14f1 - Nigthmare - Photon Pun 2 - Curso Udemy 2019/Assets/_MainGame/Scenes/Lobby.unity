@@ -1564,6 +1564,7 @@ MonoBehaviour:
   inputPlayerName: {fileID: 176728154}
   playerName: 
   txtCountdown: {fileID: 1896812861}
+  btnLobbyCancelar: {fileID: 1078869851}
 --- !u!1 &2007543998
 GameObject:
   m_ObjectHideFlags: 0

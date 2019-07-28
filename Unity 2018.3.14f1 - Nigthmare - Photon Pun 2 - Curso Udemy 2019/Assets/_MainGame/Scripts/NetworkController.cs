@@ -94,6 +94,8 @@ namespace Nigthmare {
                         };
                         
                         PhotonNetwork.CurrentRoom.SetCustomProperties(myProps);
+
+                        return;
                     }
                 }
             }
@@ -103,6 +105,7 @@ namespace Nigthmare {
 
             if(propertiesThatChanged.ContainsKey(CountdownTimer.CountdownStartTime)) {
                 lobbyScript.txtLobbyTimeStart.gameObject.SetActive(true);
+                lobbyScript.btnLobbyCancelar.gameObject.SetActive(false);
             }
         }
 

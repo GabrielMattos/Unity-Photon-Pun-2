@@ -19,6 +19,8 @@ namespace Nigthmare {
 
         public Text txtCountdown;
 
+        public GameObject btnLobbyCancelar;
+
         //public string lobbyTimeStartText = "Start Game in {0}...";
         
         void Awake() {
@@ -34,6 +36,8 @@ namespace Nigthmare {
             inputPlayerName.text = playerName;
 
             txtPlayerStatus.gameObject.SetActive(false);
+
+            btnLobbyCancelar.gameObject.SetActive(true);
         }//Start
 
         void Update() {
