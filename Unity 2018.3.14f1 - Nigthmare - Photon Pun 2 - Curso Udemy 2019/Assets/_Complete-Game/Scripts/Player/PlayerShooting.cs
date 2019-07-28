@@ -125,7 +125,7 @@ namespace CompleteProject
                 if(playeryHealth != null && myPhotonView.IsMine)
                 {
                     // ... the enemy should take damage.
-                    playeryHealth.TakeDamage (damagePerShot, shootHit.point);
+                    playeryHealth.TakeDamage (damagePerShot, shootHit.point, myPhotonView.Owner);
                 }
 
                 // Set the second position of the line renderer to the point the raycast hit.

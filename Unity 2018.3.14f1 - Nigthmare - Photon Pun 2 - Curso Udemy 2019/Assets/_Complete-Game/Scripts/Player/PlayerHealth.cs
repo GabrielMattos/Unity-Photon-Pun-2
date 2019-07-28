@@ -3,10 +3,12 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
+using Photon.Realtime;
 
 namespace CompleteProject
 {
-    public class PlayerHealth : MonoBehaviour
+    public class PlayerHealth : MonoBehaviourPunCallbacks
     {
         public int startingHealth = 100;                            // The amount of health the player starts the game with.
         public int currentHealth;                                   // The current health the player has.
@@ -26,6 +28,8 @@ namespace CompleteProject
 
         public ParticleSystem hitParticles;
         PhotonView myPhotonView;
+
+        public Text txtPlayerScore;
 
         public GameObject canvasHUD;
 
@@ -80,15 +84,19 @@ namespace CompleteProject
         }
 
 
-        public void TakeDamage (int amount, Vector3 hitPoint)
+        public void TakeDamage (int amount, Vector3 hitPoint, Player playerOrigin)
         {   
-            myPhotonView.RPC("TakeDamageNetwork", RpcTarget.All, amount, hitPoint);
+            myPhotonView.RPC("TakeDamageNetwork", RpcTarget.All, amount, hitPoint, playerOrigin);
         }
 
         [PunRPC]
-        public void TakeDamageNetwork (int amount, Vector3 hitPoint)
+        public void TakeDamageNetwork (int amount, Vector3 hitPoint, Player playerOrigin)
         {   
             if(myPhotonView.IsMine) {
+
+                //score
+                playerOrigin.AddScore(amount);
+
                 hitParticles.transform.position = hitPoint;
                 hitParticles.Play();
 
@@ -106,7 +114,9 @@ namespace CompleteProject
 
                 // If the player has lost all it's health and the death flag hasn't been set yet...
                 if(currentHealth <= 0 && !isDead)
-                {
+                {   
+                    //score
+                    playerOrigin.AddScore(amount);
                     // ... it should die.
                     //Death ();
                 }
@@ -138,6 +148,16 @@ namespace CompleteProject
         {
             // Reload the level that is currently loaded.
             SceneManager.LoadScene (0);
+        }
+
+        public override void OnPlayerPropertiesUpdate(Player target, ExitGames.Client.Photon.Hashtable changedProps) {
+
+            if(myPhotonView.Owner.ActorNumber == target.ActorNumber) {
+                object temp;
+                changedProps.TryGetValue("score", out temp);
+                txtPlayerScore.text = "Score: " + (int)temp;
+            }
+            
         }
     }
 }

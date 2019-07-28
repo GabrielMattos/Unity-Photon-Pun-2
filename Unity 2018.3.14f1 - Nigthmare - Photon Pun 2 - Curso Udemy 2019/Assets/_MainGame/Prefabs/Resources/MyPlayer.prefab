@@ -662,7 +662,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434159493}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4f43bf66218c874d871d02802b6a2db, type: 3}
   m_Name: 
@@ -1251,6 +1251,7 @@ MonoBehaviour:
   flashSpeed: 5
   flashColour: {r: 1, g: 0, b: 0, a: 0.09803922}
   hitParticles: {fileID: 3805628654478244409}
+  txtPlayerScore: {fileID: 1434159495}
   canvasHUD: {fileID: 1139190131}
 --- !u!54 &5109737305686900690
 Rigidbody:
