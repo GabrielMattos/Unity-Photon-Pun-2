@@ -18,6 +18,8 @@ namespace ClickToMove {
 
         public RpcTarget myRpcTarget;
 
+        private bool hidenItem = false;
+
         void Start() {
 
             myPhotonView = GetComponent<PhotonView>();
@@ -38,23 +40,27 @@ namespace ClickToMove {
             if(target.CompareTag("Item") && Input.GetKey(KeyCode.F) && timeForTakeCurrent >= timeForTake) {
                 timeForTakeCurrent = 0f;
                 myPhotonView.RPC("TakeItemRPC", myRpcTarget, target.GetComponent<ItemController>().itemName);
+                if(hidenItem) {
+                    target.GetComponent<ClickToMove.ItemController>().HidenItem();
+                    hidenItem = false;
+                }
+                
             }
         }
 
         [PunRPC]
         void TakeItemRPC(string nameItem) {
 
-            foreach (Transform itemWeapon in weapon)
-            {
-                if(itemWeapon.name == nameItem)
-                {
-                    if(!itemWeapon.gameObject.activeInHierarchy)
-                    {
+            foreach (Transform itemWeapon in weapon) {
+                if(itemWeapon.name == nameItem) {
+                    if(!itemWeapon.gameObject.activeInHierarchy) {
                         itemWeapon.gameObject.SetActive(true);
+                        hidenItem = true;
                     }
-                } 
-                else 
-                {
+
+
+
+                } else {
                     itemWeapon.gameObject.SetActive(false);
                 } 
             }
