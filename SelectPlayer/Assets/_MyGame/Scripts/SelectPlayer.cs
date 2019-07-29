@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 namespace SelectPlayerPhoton {
     
@@ -8,6 +10,8 @@ namespace SelectPlayerPhoton {
 
         public int playerSelected = 0;
         public GameObject playerBody;
+
+        public Image playerIconCanvas;
 
         void Start() {
 
@@ -26,6 +30,10 @@ namespace SelectPlayerPhoton {
             foreach (Transform item in playerBody.transform) {
                 if(i == playerSelected) {
                     item.gameObject.SetActive(true);
+                    if(item.gameObject.GetComponent<PlayerConfig>()) {
+                        playerIconCanvas.sprite = item.gameObject.GetComponent<PlayerConfig>().playerIcon;
+                    }
+
                 } else {
                     item.gameObject.SetActive(false);
                 }
