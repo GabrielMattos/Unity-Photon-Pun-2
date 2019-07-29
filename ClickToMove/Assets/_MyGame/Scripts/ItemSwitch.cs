@@ -58,8 +58,13 @@ namespace ClickToMove {
                         hidenItem = true;
                     }
 
-
-
+                } else if(itemWeapon.gameObject.activeInHierarchy) {
+                    itemWeapon.gameObject.SetActive(false);
+                    foreach (Transform itemList in GameObject.Find("ItemList").transform) {
+                        if(itemList.GetComponent<ItemController>().itemName == itemWeapon.name && !itemList.gameObject.activeInHierarchy) {
+                            itemList.GetComponent<ItemController>().ShowItem(this.transform.position);
+                        }
+                    }
                 } else {
                     itemWeapon.gameObject.SetActive(false);
                 } 
