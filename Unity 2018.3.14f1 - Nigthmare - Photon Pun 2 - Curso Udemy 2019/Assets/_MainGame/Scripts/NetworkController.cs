@@ -78,6 +78,8 @@ namespace Nigthmare {
         public override void OnJoinedRoom() { //Master cliente entra primeiro, os proximos em seguida
 
             Debug.Log("OnJoinedRoom");
+
+            PhotonNetwork.LocalPlayer.SetScore(0); //zerando a pontuação quando entra na sala
         }
 
         public override void OnPlayerEnteredRoom(Player newPlayer) { //quando um novo player entrar na sala

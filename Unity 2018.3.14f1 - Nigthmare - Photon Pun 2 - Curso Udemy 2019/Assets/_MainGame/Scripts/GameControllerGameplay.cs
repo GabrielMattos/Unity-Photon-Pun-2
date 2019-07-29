@@ -19,7 +19,11 @@ namespace Nigthmare {
         public GameObject canvasGameOverFinish;
         public GameObject canvasGameOverPlayerScore;
 
+        bool isGameOver = false;
+
         void Start() {
+
+            isGameOver = false;
 
             int tempPosition = Random.Range(0, spawnPlayer.Length);
             GameObject playerTemp = PhotonNetwork.Instantiate(myPlayer.name, spawnPlayer[tempPosition].position, spawnPlayer[tempPosition].rotation, 0) as GameObject;
@@ -42,6 +46,9 @@ namespace Nigthmare {
         void CheckPlayers() {
 
             if(PhotonNetwork.PlayerList.Length < 2) { //Se houver apenas 1 jogador na partida, o mesmo é vencedor
+                   
+                   
+                   
                    GameOver();
             }
         }
@@ -49,6 +56,10 @@ namespace Nigthmare {
         public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer) { //Se algum jogador sair da partida
 
             print(otherPlayer.NickName + " saiu da partida");
+
+            if(isGameOver) {
+                return;     
+            }
             CheckPlayers();
         }
 
@@ -88,7 +99,9 @@ namespace Nigthmare {
                 }; 
             PhotonNetwork.CurrentRoom.SetCustomProperties(myProps);
 
-            Debug.Log("Passei por aqui!");
+            isGameOver = true;
+
+            //Debug.Log("Passei por aqui!");
         }
 
         //Botão sair do jogo
