@@ -36,6 +36,8 @@ namespace CompleteProject
         public RuntimeAnimatorController animatorController;
         public AudioClip hurtClip;
 
+        public GameObject canvasRespawn;
+
         void Awake ()
         {
             // Setting up the references.
@@ -144,6 +146,10 @@ namespace CompleteProject
             // Turn off the movement and shooting scripts.
             playerMovement.enabled = false;
             playerShooting.enabled = false;
+
+            if(myPhotonView.IsMine) {
+                Instantiate(canvasRespawn);
+            }
 
             StartCoroutine(DeathEffect(2f));
         }
