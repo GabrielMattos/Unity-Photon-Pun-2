@@ -1445,6 +1445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fa50ad0bd6f3dc44acb69abd28526b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myPhotonView: {fileID: 0}
   txtPlayerName: {fileID: 8381982905072282793}
   playerCanvas: {fileID: 1563677935333644587}
 --- !u!135 &9013669863601648085

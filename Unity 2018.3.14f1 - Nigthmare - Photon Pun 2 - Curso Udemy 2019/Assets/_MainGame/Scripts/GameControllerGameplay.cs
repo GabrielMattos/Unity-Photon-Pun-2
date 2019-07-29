@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
+using Photon.Pun.UtilityScripts; //Para pegar score
 
 namespace Nigthmare {
     
@@ -9,6 +11,12 @@ namespace Nigthmare {
 
         public GameObject myPlayer;
         public Transform[] spawnPlayer;
+
+        public GameObject canvasCountdown;
+        public GameObject canvasGameOver;
+        public GameObject canvasGameOverFinish;
+        public GameObject canvasGameOverPlayerScore;
+
 
         void Start() {
 
@@ -23,14 +31,18 @@ namespace Nigthmare {
                         PhotonNetwork.CurrentRoom.SetCustomProperties(myProps);
                     }
 
-                    CheckPlayers();   
+                    CheckPlayers();
+
+                    if(canvasCountdown && !canvasCountdown.gameObject.activeInHierarchy) {
+                        canvasCountdown.gameObject.SetActive(true);
+                    }   
                 }//Start
 
         void CheckPlayers() {
 
             if(PhotonNetwork.PlayerList.Length < 2) { //Se houver apenas 1 jogador na partida, o mesmo é vencedor
                 foreach (var item in PhotonNetwork.PlayerList) {
-                    print(item.NickName + " Vencedor!");
+                    GameOver();
                 }
             }
         }
@@ -39,6 +51,20 @@ namespace Nigthmare {
 
             print(otherPlayer.NickName + " saiu da partida");
             CheckPlayers();
+        }
+
+        void GameOver() {
+
+            canvasGameOver.gameObject.SetActive(true);
+
+            foreach (var item in PhotonNetwork.PlayerList) {
+                
+                GameObject tempPlayerScore = Instantiate(canvasGameOverPlayerScore) as GameObject;
+
+                tempPlayerScore.transform.SetParent(canvasGameOverFinish.transform);
+                tempPlayerScore.transform.position = Vector3.zero;
+                tempPlayerScore.GetComponent<Nightmare.PlayerScore>().SetDados(item.NickName, item.GetScore().ToString());
+            }
         }
 
     }//SCRIPTNAME

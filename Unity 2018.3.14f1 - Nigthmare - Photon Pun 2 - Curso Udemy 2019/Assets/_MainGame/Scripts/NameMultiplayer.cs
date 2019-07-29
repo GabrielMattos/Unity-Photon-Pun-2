@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-namespace Nigthmare {
+namespace Nightmare {
     
     public class NameMultiplayer : MonoBehaviour {
 
-        private PhotonView myPhotonView;
+        [HideInInspector]
+        public PhotonView myPhotonView;
 
         public Text txtPlayerName;
 
