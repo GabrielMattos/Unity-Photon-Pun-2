@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using Photon.Pun.UtilityScripts; //Para pegar score
+using System.Linq; //organização dos valores da pontuação
 
 namespace Nigthmare {
     
@@ -54,13 +55,28 @@ namespace Nigthmare {
 
             canvasGameOver.gameObject.SetActive(true);
 
+            var dictionary = new Dictionary<string, int>();
+
             foreach (var item in PhotonNetwork.PlayerList) {
                 
+                /*GameObject tempPlayerScore = Instantiate(canvasGameOverPlayerScore) as GameObject;
+
+                tempPlayerScore.transform.SetParent(canvasGameOverFinish.transform);
+                tempPlayerScore.transform.position = Vector3.zero;
+                tempPlayerScore.GetComponent<Nightmare.PlayerScore>().SetDados(item.NickName, item.GetScore().ToString()); */
+
+                dictionary.Add(item.NickName, item.GetScore()); //organização dos valores da pontuação
+            }
+
+            var items = from pair in dictionary orderby pair.Value descending select pair; //organização dos valores da pontuação
+
+            foreach (var item in items)
+            {
                 GameObject tempPlayerScore = Instantiate(canvasGameOverPlayerScore) as GameObject;
 
                 tempPlayerScore.transform.SetParent(canvasGameOverFinish.transform);
                 tempPlayerScore.transform.position = Vector3.zero;
-                tempPlayerScore.GetComponent<Nightmare.PlayerScore>().SetDados(item.NickName, item.GetScore().ToString());
+                tempPlayerScore.GetComponent<Nightmare.PlayerScore>().SetDados(item.Key, item.Value.ToString());
             }
 
             canvasCountdown.gameObject.SetActive(false);
