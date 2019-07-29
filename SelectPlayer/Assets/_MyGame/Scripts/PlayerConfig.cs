@@ -9,12 +9,12 @@ namespace SelectPlayerPhoton {
 
         public PlayerData playerData;
 
-        public Sprite playerIcon;
+       /*public Sprite playerIcon;
 
         void Start() {
 
             playerIcon = playerData.playerIcon;
-        }
+        } */ 
 
     }//SCRIPTNAME
     

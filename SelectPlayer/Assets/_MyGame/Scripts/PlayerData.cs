@@ -9,6 +9,10 @@ namespace SelectPlayerPhoton
     public class PlayerData : ScriptableObject {
 
         public Sprite playerIcon;
+        public string playerName;
+        public string playerStatus;
+        public string playerType;
+        public string playerSpeed;
 
     }//SCRIPTNAME
 }

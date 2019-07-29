@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: CubePlayerConfig
   m_EditorClassIdentifier: 
   playerIcon: {fileID: 21300000, guid: ec0b386b39bd9cc4ca9cc820011a17cc, type: 3}
+  playerName: Cubo
+  playerStatus: ijoijjioj
+  playerType: quadrado
+  playerSpeed: 20

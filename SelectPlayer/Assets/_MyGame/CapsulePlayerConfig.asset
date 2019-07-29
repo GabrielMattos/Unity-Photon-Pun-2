@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: CapsulePlayerConfig
   m_EditorClassIdentifier: 
   playerIcon: {fileID: 21300000, guid: 78791fad119e6694f81260bc1e52688c, type: 3}
+  playerName: Capsula
+  playerStatus: grrgrgrggr
+  playerType: Redondo
+  playerSpeed: 10

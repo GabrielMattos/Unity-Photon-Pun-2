@@ -31,7 +31,13 @@ namespace SelectPlayerPhoton {
                 if(i == playerSelected) {
                     item.gameObject.SetActive(true);
                     if(item.gameObject.GetComponent<PlayerConfig>()) {
-                        playerIconCanvas.sprite = item.gameObject.GetComponent<PlayerConfig>().playerIcon;
+                        playerIconCanvas.sprite = item.gameObject.GetComponent<PlayerConfig>().playerData.playerIcon;
+
+                        PlayerData playerdataTemp = item.gameObject.GetComponent<PlayerConfig>().playerData;
+                        print("Name: " + playerdataTemp.playerName);
+                        print("Name: " + playerdataTemp.playerStatus);
+                        print("Name: " + playerdataTemp.playerType);
+                        print("Name: " + playerdataTemp.playerSpeed);
                     }
 
                 } else {
