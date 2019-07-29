@@ -1435,6 +1435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SmoothingDelay: 5
+  SmoothingTurnDelay: 20
 --- !u!114 &5913018139516969878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1479,13 +1480,13 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: IsWalking
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Die
   m_SynchronizeLayers:
-  - SynchronizeType: 2
+  - SynchronizeType: 1
     LayerIndex: 0
 --- !u!1 &5109737305691954358
 GameObject:
