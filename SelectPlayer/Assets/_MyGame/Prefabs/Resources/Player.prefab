@@ -191,6 +191,7 @@ MonoBehaviour:
   playerBody: {fileID: 6415127733170432502}
   playerIconCanvas: {fileID: 6415127732448483568}
   playerCanvas: {fileID: 6415127733344589200}
+  myRpcTarget: 3
 --- !u!114 &101912764810690237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +213,7 @@ MonoBehaviour:
   - {fileID: 4247699212813252030}
   - {fileID: 5244589908942694062}
   viewIdField: 0
-  InstantiationId: 0
+  InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &4247699212813252030
 MonoBehaviour:
@@ -1454,10 +1455,10 @@ RectTransform:
   m_Father: {fileID: 6415127733344589228}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -538.6, y: 248.3}
-  m_SizeDelta: {x: -1077.1, y: -496.6}
+  m_AnchorMin: {x: 0, y: 0.67211115}
+  m_AnchorMax: {x: 0.163875, y: 1}
+  m_AnchoredPosition: {x: -3.5999756, y: 6.299988}
+  m_SizeDelta: {x: -7.0999756, y: -12.600006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6415127733744078087
 CanvasRenderer:

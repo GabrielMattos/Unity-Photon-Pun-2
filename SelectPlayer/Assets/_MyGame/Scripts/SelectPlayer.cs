@@ -19,6 +19,8 @@ namespace SelectPlayerPhoton {
 
         PhotonView myPhotonView;
 
+        public RpcTarget myRpcTarget;
+
         void Start() {
 
             
@@ -38,6 +40,34 @@ namespace SelectPlayerPhoton {
         }//Update
 
         void SwitchPlayer() {
+
+           /*  int i = 0;
+
+            foreach (Transform item in playerBody.transform) {
+                if(i == playerSelected) {
+                    item.gameObject.SetActive(true);
+                    if(item.gameObject.GetComponent<PlayerConfig>()) {
+                        playerIconCanvas.sprite = item.gameObject.GetComponent<PlayerConfig>().playerData.playerIcon;
+
+                        //PlayerData playerdataTemp = item.gameObject.GetComponent<PlayerConfig>().playerData;
+                        //print("Name: " + playerdataTemp.playerName);
+                        //print("Name: " + playerdataTemp.playerStatus);
+                        //print("Name: " + playerdataTemp.playerType);
+                        //print("Name: " + playerdataTemp.playerSpeed);
+                    }
+
+                } else {
+                    item.gameObject.SetActive(false);
+                }
+
+                i++;
+            }*/
+
+            myPhotonView.RPC("SwitchPlayerRPC", myRpcTarget);
+        }
+
+        [PunRPC]
+        void SwitchPlayerRPC() {
 
             int i = 0;
 
@@ -64,7 +94,21 @@ namespace SelectPlayerPhoton {
 
         public void BtnBack() {
 
-            playerSelected--;
+            /* playerSelected--;
+
+            if(playerSelected < 0) {
+                playerSelected = playerBody.transform.childCount - 1;
+            }
+
+            SwitchPlayer();*/
+
+            myPhotonView.RPC("BtnBackRPC", myRpcTarget);
+        }
+
+        [PunRPC]
+        void BtnBackRPC() {
+
+                        playerSelected--;
 
             if(playerSelected < 0) {
                 playerSelected = playerBody.transform.childCount - 1;
@@ -75,7 +119,21 @@ namespace SelectPlayerPhoton {
 
         public void BtnForward() {
 
-            playerSelected++;
+            /* playerSelected++;
+
+            if(playerSelected > (playerBody.transform.childCount - 1)) {
+                playerSelected = 0;
+            }
+
+            SwitchPlayer();*/
+
+            myPhotonView.RPC("BtnForwardRPC", myRpcTarget);
+        }
+
+        [PunRPC]
+        void BtnForwardRPC() {
+
+                        playerSelected++;
 
             if(playerSelected > (playerBody.transform.childCount - 1)) {
                 playerSelected = 0;
