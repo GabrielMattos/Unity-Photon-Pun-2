@@ -10,7 +10,11 @@ namespace CompleteProject
 
 
         public void LateUpdate()
-        {
+        {   
+            if(!target) {
+                return;
+            }
+
             transform.position = target.position + offset;
         }
     }

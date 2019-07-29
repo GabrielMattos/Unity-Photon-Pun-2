@@ -5,6 +5,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using Photon.Pun.UtilityScripts; //Para pegar score
 using System.Linq; //organização dos valores da pontuação
+using UnityEngine.SceneManagement;
 
 namespace Nigthmare {
     
@@ -88,6 +89,21 @@ namespace Nigthmare {
             PhotonNetwork.CurrentRoom.SetCustomProperties(myProps);
 
             Debug.Log("Passei por aqui!");
+        }
+
+        //Botão sair do jogo
+        public void BtnDesconnectar() {
+
+            PhotonNetwork.LeaveRoom();
+            
+        }
+
+        public override void OnDisconnected(DisconnectCause cause) {
+            SceneManager.LoadScene("Lobby");
+        }
+
+        public override void OnLeftRoom() {
+            PhotonNetwork.Disconnect();
         }
 
     }//SCRIPTNAME

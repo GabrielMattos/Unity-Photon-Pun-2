@@ -11,27 +11,26 @@ public class PauseManager : MonoBehaviour {
 	public AudioMixerSnapshot paused;
 	public AudioMixerSnapshot unpaused;
 	
-	Canvas canvas;
+	public Canvas pauseCanvas;
 	
 	void Start()
 	{
-		canvas = GetComponent<Canvas>();
+		pauseCanvas = GetComponent<Canvas>();
 	}
 	
 	void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			canvas.enabled = !canvas.enabled;
+			pauseCanvas.enabled = !pauseCanvas.enabled;
 			Pause();
 		}
 	}
 	
 	public void Pause()
-	{
-		Time.timeScale = Time.timeScale == 0 ? 1 : 0;
-		Lowpass ();
-		
+	{	
+		/*Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+		Lowpass (); */
 	}
 	
 	void Lowpass()

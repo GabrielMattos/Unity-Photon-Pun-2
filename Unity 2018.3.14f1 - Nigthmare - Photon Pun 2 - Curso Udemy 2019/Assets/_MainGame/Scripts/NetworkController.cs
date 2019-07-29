@@ -95,6 +95,9 @@ namespace Nigthmare {
                         
                         PhotonNetwork.CurrentRoom.SetCustomProperties(myProps);
 
+                        PhotonNetwork.CurrentRoom.IsOpen = false;
+                        PhotonNetwork.CurrentRoom.IsVisible = false;
+
                         return;
                     }
                 }
