@@ -200,7 +200,27 @@ namespace CompleteProject
                 changedProps.TryGetValue("score", out temp);
                 txtPlayerScore.text = "Score: " + (int)temp;
             }
-            
+        }
+
+        public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged) {
+
+            Debug.Log("Passei por aqui!");
+
+            object isGameOver;
+
+             if (propertiesThatChanged.TryGetValue("isGameOver", out isGameOver))
+            {
+               if((bool)isGameOver) {
+                    GameOverPlayer();
+               }
+            }
+        }
+
+        void GameOverPlayer() {
+
+            playerMovement.enabled = false;
+            playerShooting.enabled = false;
+            canvasHUD.gameObject.SetActive(false);
         }
     }
 }

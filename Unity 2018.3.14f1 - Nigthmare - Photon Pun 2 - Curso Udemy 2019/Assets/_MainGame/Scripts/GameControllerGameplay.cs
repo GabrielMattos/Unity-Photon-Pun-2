@@ -41,7 +41,7 @@ namespace Nigthmare {
 
             if(PhotonNetwork.PlayerList.Length < 2) { //Se houver apenas 1 jogador na partida, o mesmo é vencedor
                 //foreach (var item in PhotonNetwork.PlayerList) {
-                   // GameOver();
+                   GameOver();
                 //}
             }
         }
@@ -65,20 +65,15 @@ namespace Nigthmare {
                 tempPlayerScore.GetComponent<Nightmare.PlayerScore>().SetDados(item.NickName, item.GetScore().ToString());
             }
 
-            foreach (var item in GameObject.FindGameObjectsWithTag("Player")) {   
-                
-                item.transform.Find("HUDCanvas").gameObject.SetActive(false);
-
-                if(item.gameObject.GetComponent<PlayerMovement>()) {
-                    item.gameObject.GetComponent<PlayerMovement>().enabled = false;
-                }
-
-                if(item.gameObject.GetComponent<PlayerShooting>()) {
-                    item.gameObject.GetComponent<PlayerShooting>().enabled = false;
-                }
-            }
-
             canvasCountdown.gameObject.SetActive(false);
+
+            //Propriedades da sala
+            ExitGames.Client.Photon.Hashtable myProps = new ExitGames.Client.Photon.Hashtable {
+                {"isGameOver", true}
+                }; 
+            PhotonNetwork.CurrentRoom.SetCustomProperties(myProps);
+
+            Debug.Log("Passei por aqui!");
         }
 
     }//SCRIPTNAME

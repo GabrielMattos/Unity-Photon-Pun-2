@@ -105,12 +105,24 @@ using Photon.Pun;
 
         public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
         {
+
+            Debug.Log("Passei por aqui!");
+
             object startTimeFromProps;
 
             if (propertiesThatChanged.TryGetValue(CountdownStartTime, out startTimeFromProps))
             {
                 isTimerRunning = true;
                 startTime = (float)startTimeFromProps;
+            }
+
+            object isGameOver;
+
+             if (propertiesThatChanged.TryGetValue("isGameOver", out isGameOver))
+            {
+               if((bool)isGameOver) {
+                   isTimerRunning = false;
+               }
             }
         }
     }
