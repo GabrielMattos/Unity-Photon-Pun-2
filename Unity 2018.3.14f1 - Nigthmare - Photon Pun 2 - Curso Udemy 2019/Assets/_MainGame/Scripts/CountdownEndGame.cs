@@ -49,7 +49,7 @@ using Photon.Pun;
         public Text Text;
 
         [Header("Countdown time in seconds")]
-        public float Countdown = 5.0f;
+        public float Countdown = 60.0f;
 
         public void Start()
         {
@@ -82,6 +82,7 @@ using Photon.Pun;
             if(timeInText.Equals("0:00")) {
                 print("FIM DE JOGO");
                 isTimerRunning = false;
+                this.GetComponent<Nigthmare.GameControllerGameplay>().GameOver();
             }
 
             /* Text.text = string.Format("Game starts in {0} seconds", countdown.ToString("n2"));

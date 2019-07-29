@@ -17,7 +17,6 @@ namespace Nigthmare {
         public GameObject canvasGameOverFinish;
         public GameObject canvasGameOverPlayerScore;
 
-
         void Start() {
 
             int tempPosition = Random.Range(0, spawnPlayer.Length);
@@ -41,9 +40,9 @@ namespace Nigthmare {
         void CheckPlayers() {
 
             if(PhotonNetwork.PlayerList.Length < 2) { //Se houver apenas 1 jogador na partida, o mesmo é vencedor
-                foreach (var item in PhotonNetwork.PlayerList) {
-                    GameOver();
-                }
+                //foreach (var item in PhotonNetwork.PlayerList) {
+                   // GameOver();
+                //}
             }
         }
 
@@ -53,7 +52,7 @@ namespace Nigthmare {
             CheckPlayers();
         }
 
-        void GameOver() {
+        public void GameOver() {
 
             canvasGameOver.gameObject.SetActive(true);
 
@@ -65,6 +64,21 @@ namespace Nigthmare {
                 tempPlayerScore.transform.position = Vector3.zero;
                 tempPlayerScore.GetComponent<Nightmare.PlayerScore>().SetDados(item.NickName, item.GetScore().ToString());
             }
+
+            foreach (var item in GameObject.FindGameObjectsWithTag("Player")) {   
+                
+                item.transform.Find("HUDCanvas").gameObject.SetActive(false);
+
+                if(item.gameObject.GetComponent<PlayerMovement>()) {
+                    item.gameObject.GetComponent<PlayerMovement>().enabled = false;
+                }
+
+                if(item.gameObject.GetComponent<PlayerShooting>()) {
+                    item.gameObject.GetComponent<PlayerShooting>().enabled = false;
+                }
+            }
+
+            canvasCountdown.gameObject.SetActive(false);
         }
 
     }//SCRIPTNAME
