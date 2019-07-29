@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Realtime;
+using Photon.Pun;
 
 
 namespace SelectPlayerPhoton {
@@ -13,7 +15,19 @@ namespace SelectPlayerPhoton {
 
         public Image playerIconCanvas;
 
+        public GameObject playerCanvas;
+
+        PhotonView myPhotonView;
+
         void Start() {
+
+            
+
+            myPhotonView = GetComponent<PhotonView>();
+
+            if(!myPhotonView.IsMine) {
+                playerCanvas.gameObject.SetActive(false);
+            }
 
             SwitchPlayer();
         }//Start
@@ -33,11 +47,11 @@ namespace SelectPlayerPhoton {
                     if(item.gameObject.GetComponent<PlayerConfig>()) {
                         playerIconCanvas.sprite = item.gameObject.GetComponent<PlayerConfig>().playerData.playerIcon;
 
-                        PlayerData playerdataTemp = item.gameObject.GetComponent<PlayerConfig>().playerData;
-                        print("Name: " + playerdataTemp.playerName);
-                        print("Name: " + playerdataTemp.playerStatus);
-                        print("Name: " + playerdataTemp.playerType);
-                        print("Name: " + playerdataTemp.playerSpeed);
+                        //PlayerData playerdataTemp = item.gameObject.GetComponent<PlayerConfig>().playerData;
+                        //print("Name: " + playerdataTemp.playerName);
+                        //print("Name: " + playerdataTemp.playerStatus);
+                        //print("Name: " + playerdataTemp.playerType);
+                        //print("Name: " + playerdataTemp.playerSpeed);
                     }
 
                 } else {
