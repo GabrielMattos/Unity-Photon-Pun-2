@@ -13,6 +13,12 @@ namespace ClickToMove {
 
         PhotonView myPhotonView;
 
+        int characterCurrent;
+
+        public GameObject body;
+
+        public RpcTarget myRpcTarget;
+
         void Awake() {
 
             myNavMeshAgent = GetComponent<NavMeshAgent>();
@@ -29,6 +35,15 @@ namespace ClickToMove {
                     }
                 }
             }
+
+             characterCurrent = PlayerPrefs.GetInt("CHARACTER", 0);
+
+            if(myPhotonView.IsMine) {
+                myPhotonView.RPC("SwitchCaracterRPC", myRpcTarget, characterCurrent);
+            }
+
+           
+
         }//Start
 
         void Update() {
@@ -50,6 +65,23 @@ namespace ClickToMove {
                 if(Physics.Raycast(ray, out hit, 100)) {
                     myNavMeshAgent.destination = hit.point;
                 }
+            }
+        }
+
+        [PunRPC]
+        void SwitchCaracterRPC(int value) {
+
+            int i = 0;
+
+            foreach (Transform characters in body.transform)
+            {
+                if(i == value) {
+                    characters.gameObject.SetActive(true);
+                } else {
+                    characters.gameObject.SetActive(false);
+                }
+
+                i++;
             }
         }
 

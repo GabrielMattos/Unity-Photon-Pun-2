@@ -35,5 +35,6 @@ MonoBehaviour:
   - TakeItemRPC
   - HidenItemRPC
   - ShowItemRPC
+  - SwitchCaracterRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 0
