@@ -41,9 +41,7 @@ namespace ClickToMove {
             if(myPhotonView.IsMine) {
                 myPhotonView.RPC("SwitchCaracterRPC", myRpcTarget, characterCurrent);
             }
-
-           
-
+            
         }//Start
 
         void Update() {

@@ -209,7 +209,7 @@ namespace IntroducaoPhotonUdemy {
 
         //Chamado ao desconectar do servidor da photon (ex: internet caiu)
         public override void OnDisconnected(DisconnectCause cause) { 
-            print("Desconetado do servidor: " + cause);
+            print("Desconectado do servidor: " + cause);
             //PhotonNetwork.ConnectToRegion("cn"); //Usado para conectar em um servidor de determinada região //As regiões estão em: https://doc.photonengine.com/en-us/realtime/current/connection-and-authentication/regions
            // isConnected = false;
         }

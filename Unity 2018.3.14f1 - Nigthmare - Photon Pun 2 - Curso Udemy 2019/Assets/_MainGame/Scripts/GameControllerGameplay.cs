@@ -46,9 +46,6 @@ namespace Nigthmare {
         void CheckPlayers() {
 
             if(PhotonNetwork.PlayerList.Length < 2) { //Se houver apenas 1 jogador na partida, o mesmo é vencedor
-                   
-                   
-                   
                    GameOver();
             }
         }
